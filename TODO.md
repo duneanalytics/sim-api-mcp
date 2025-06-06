@@ -24,92 +24,58 @@
 - [x] **Made package.json generalizable** - Added bin entry for global installation
 - [x] **Updated README** - Clear installation and usage instructions
 - [x] **Working MCP server** - Server runs and responds to MCP protocol properly
+- [x] **Created src/index.ts entrypoint** - Koa server with StreamableHTTPServerTransport
+- [x] **Created package.json** - With all necessary dependencies and scripts
+- [x] **Updated server registration** - Using Zod schemas with conversion from JSON schemas
+- [x] **All dependencies installed** - Package working with pnpm
+- [x] **Tests passing** - All 24 tests pass successfully
+- [x] **Server starts successfully** - MCP server runs on port 3000
 
-## 🚧 High Priority - MCP Tool Integration 
+## Tool-by-Tool Conversion - ✅ COMPLETED
 
-## Project Setup
-- [x] Create `src/index.ts` entrypoint with Koa and StreamableHTTPServerTransport
-- [x] Create `package.json`
-- [x] Add all dependencies
- 
-## Tool-by-Tool Conversion
+### EVM Tools - All Completed ✅
+- [x] **getBalances** - Using `defineAPITool` framework with proper parameters
+- [x] **getEVMTransactions** - Using `defineAPITool` framework with proper parameters  
+- [x] **getEVMActivity** - Using `defineAPITool` framework with proper parameters
+- [x] **getTokenPrice** - Using `defineAPITool` framework with proper parameters
+- [x] **listSupportedChainsTransactions** - Using `defineAPITool` framework with idempotent hint
+- [x] **listSupportedChainsTokenBalances** - Using `defineAPITool` framework with idempotent hint
 
-### EVM Tools
-- [x] **getBalances** 
-  - Use `defineAPITool` framework
-  - Parameters: `address` (required), `chain_ids`, `exclude_spam_tokens`
-  - Title: "Get Token Balances"
-  - Fix name from `getBalance` → `getBalances`
+### SVM Tools - All Completed ✅
+- [x] **getSVMBalances** - Using `defineAPITool` framework with proper parameters
+- [x] **getSVMTransactions** - Using `defineAPITool` framework with proper parameters
 
-- [x] **getEVMTransactions**
-  - Use `defineAPITool` framework  
-  - Parameters: `address` (required), `chain_ids`, `limit`, `after_block_number`, `after_timestamp`, `tx_hash`
-  - Title: "Get EVM Transactions"
-  - Remove non-existent `decode` parameter
+## MCP Annotations Strategy - ✅ COMPLETED
+- [x] Applied `readOnlyHint: true` to all tools (they're all API queries)
+- [x] Applied `destructiveHint: false` to all tools (no state modification)
+- [x] Applied `openWorldHint: true` to all tools (external API interactions)
+- [x] Applied `idempotentHint: true` to listing functions only
 
-- [x] **getEVMActivity**
-  - Use `defineAPITool` framework
-  - Parameters: `address` (required), `chain_ids`, `limit`, `after_block_number`, `after_timestamp`, `tx_hash`
-  - Title: "Get EVM Activity"
-  - Fix name from `getLatestEVMActivity` → `getEVMActivity`
+## 🚧 Remaining Tasks
 
-- [x] **getTokenPrice**
-  - Use `defineAPITool` framework
-  - Parameters: `contract_address` (required), `chain_ids`
-  - Title: "Get Token Price"
-  - Note: Uses `/beta/tokens/evm/` endpoint
-
-- [x] **listSupportedChainsTransactions**
-  - Use `defineAPITool` framework
-  - Parameters: None
-  - Title: "List Supported Chains (Transactions)"
-  - Set `idempotentHint: true`
-
-- [x] **listSupportedChainsTokenBalances**
-  - Use `defineAPITool` framework
-  - Parameters: None  
-  - Title: "List Supported Chains (Balances)"
-  - Set `idempotentHint: true`
-
-### SVM Tools
-- [x] **getSVMBalances**
-  - Use `defineAPITool` framework
-  - Parameters: `address` (required), `mint_addresses`, `exclude_spam`
-  - Title: "Get Solana Token Balances"
-
-- [x] **getSVMTransactions**  
-  - Use `defineAPITool` framework
-  - Parameters: `address` (required), `limit`, `after_block_number`, `after_timestamp`, `tx_hash`
-  - Title: "Get Solana Transactions"
-
-## MCP Annotations Strategy
-- [x] Apply `readOnlyHint: true` to all tools (they're all API queries)
-- [x] Apply `destructiveHint: false` to all tools (no state modification)
-- [x] Apply `openWorldHint: true` to all tools (external API interactions)
-- [x] Apply `idempotentHint: true` to listing functions only
-
-## Integration Tasks
-- [ ] Update server registration in `src/server.ts` to use Zod schemas instead of JSON schemas
-- [ ] Install dependencies: `npm install`
+### Testing & Validation
 - [ ] Test MCP tool definitions with MCP Inspector
-- [ ] Verify tool schemas match actual function parameters
-- [ ] Ensure callback functions properly handle parameter mapping
+- [ ] Verify tool schemas match actual function parameters in real MCP client
+- [ ] Test each tool definition with sample inputs in MCP environment
+- [ ] Verify JSON schemas validate correctly in MCP context
+- [ ] Ensure all required parameters are marked as required in MCP client
+- [ ] Check that optional parameters have sensible defaults in MCP client
 
-## Documentation Cleanup
-- [ ] Archive or remove old `src/tools/descriptions.ts` once migration is complete
+### Documentation & Cleanup
+- [ ] Archive or remove old `src/tools/descriptions.ts` once migration is fully verified
 - [ ] Update README if it references the old description format
 - [ ] Document the new MCP tool definition pattern for future tools
 
-## Validation
-- [ ] Test each tool definition with sample inputs
-- [ ] Verify JSON schemas validate correctly
-- [ ] Ensure all required parameters are marked as required
-- [ ] Check that optional parameters have sensible defaults
-
-## Future Enhancements
+### Production Readiness
 - [ ] Add TypeScript build step for production
 - [ ] Add CI/CD pipeline
-- [ ] Add more comprehensive error handling
+- [ ] Add more comprehensive error handling for edge cases
 - [ ] Add request/response logging
 - [ ] Add rate limiting
 - [ ] Publish to npm registry
+
+### Optional Enhancements
+- [ ] Add support for pagination in tools that support it
+- [ ] Add input validation beyond schema validation
+- [ ] Add caching for expensive operations
+- [ ] Add metrics and monitoring
