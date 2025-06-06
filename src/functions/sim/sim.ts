@@ -24,7 +24,7 @@ export async function getBalances(
   }
 
   if (params.exclude_spam_tokens !== undefined) {
-    url.searchParams.append("exclude_spam_tokens", "");
+    url.searchParams.append("exclude_spam_tokens", params.exclude_spam_tokens.toString());
   }
 
   const response = await fetch(url.toString(), {
