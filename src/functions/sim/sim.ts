@@ -98,7 +98,7 @@ export async function getTokenPrice(
   params: EVMTokenParams = { chain_ids: "all" }
 ) {
   const url = new URL(
-    `https://api.sim.dune.com/beta/tokens/evm/${contract_address}`
+    `https://api.sim.dune.com/v1/evm/token-info/${contract_address}`
   );
 
   if (params.chain_ids) {
@@ -144,8 +144,9 @@ export async function listSupportedChainsTokenBalances() {
 // SVM Endpoints
 
 type SVMBalancesParams = {
-  mint_addresses?: string[]; // specific token mints to fetch
-  exclude_spam?: boolean; // exclude spam tokens
+  chains?: string; 
+  limit?: number;
+  offset?: string;
 };
 
 export async function getSVMBalances(
@@ -153,15 +154,19 @@ export async function getSVMBalances(
   params: SVMBalancesParams = {}
 ) {
   const url = new URL(
-    `https://api.sim.dune.com/beta/balances/svm/${address}`
+    `https://api.sim.dune.com/beta/svm/balances/${address}`
   );
 
-  if (params.mint_addresses?.length) {
-    url.searchParams.append("mint_addresses", params.mint_addresses.join(","));
+  if (params.chains) {
+    url.searchParams.append("chains", params.chains);
   }
 
-  if (params.exclude_spam !== undefined) {
-    url.searchParams.append("exclude_spam", params.exclude_spam.toString());
+  if (params.limit !== undefined) {
+    url.searchParams.append("limit", params.limit.toString());
+  }
+
+  if (params.offset) {
+    url.searchParams.append("offset", params.offset);
   }
 
   const response = await fetch(url.toString(), {
@@ -173,10 +178,8 @@ export async function getSVMBalances(
 }
 
 type SVMTransactionsParams = {
-  limit?: number; // number of transactions to return
-  after_block_number?: number; // fetch transactions after this block
-  after_timestamp?: number; // fetch transactions after this timestamp
-  tx_hash?: string; // filter by transaction hash
+  limit?: number; // maximum number of results to return
+  offset?: string; // pagination offset from previous response
 };
 
 export async function getSVMTransactions(
@@ -184,29 +187,15 @@ export async function getSVMTransactions(
   params: SVMTransactionsParams = {}
 ) {
   const url = new URL(
-    `https://api.sim.dune.com/beta/transactions/svm/${address}`
+    `https://api.sim.dune.com/beta/svm/transactions/${address}`
   );
 
   if (params.limit !== undefined) {
     url.searchParams.append("limit", params.limit.toString());
   }
 
-  if (params.after_block_number !== undefined) {
-    url.searchParams.append(
-      "after_block_number",
-      params.after_block_number.toString()
-    );
-  }
-
-  if (params.after_timestamp !== undefined) {
-    url.searchParams.append(
-      "after_timestamp",
-      params.after_timestamp.toString()
-    );
-  }
-
-  if (params.tx_hash) {
-    url.searchParams.append("tx_hash", params.tx_hash);
+  if (params.offset) {
+    url.searchParams.append("offset", params.offset);
   }
 
   const response = await fetch(url.toString(), {

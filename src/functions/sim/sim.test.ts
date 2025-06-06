@@ -184,7 +184,7 @@ describe("Sim API Client", () => {
 
   describe("getTokenPrice", () => {
     const contract_address = "0xTokenContract";
-    const baseExpectedUrl = `https://api.sim.dune.com/beta/tokens/evm/${contract_address}`;
+    const baseExpectedUrl = `https://api.sim.dune.com/v1/evm/token-info/${contract_address}`;
     const mockTokenPriceResponse: components["schemas"]["TokensResponse"] = {
       contract_address: contract_address,
       tokens: [
@@ -301,7 +301,7 @@ describe("Sim API Client", () => {
 
   describe("getSVMBalances", () => {
     const address = "So1anaAddress";
-    const baseExpectedUrl = `https://api.sim.dune.com/beta/balances/svm/${address}`;
+    const baseExpectedUrl = `https://api.sim.dune.com/beta/svm/balances/${address}`;
     const mockSvmBalanceResponse: components["schemas"]["BalancesResponse"] = {
       balances: [
         {

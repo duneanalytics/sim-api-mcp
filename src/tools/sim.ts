@@ -165,8 +165,9 @@ export const getSVMBalancesTool: MCPTool = defineAPITool(
     callback: async (args) => {
       try {
         const result = await getSVMBalances(args.address, {
-          mint_addresses: args.mint_addresses,
-          exclude_spam: args.exclude_spam
+          chains: args.chains,
+          limit: args.limit,
+          offset: args.offset
         });
         return handleToolResult(result);
       } catch (error: any) {
@@ -179,8 +180,12 @@ export const getSVMBalancesTool: MCPTool = defineAPITool(
       type: "string",
       description: "Solana wallet address to check balances for"
     },
-    mint_addresses: CommonProperties.mintAddresses,
-    exclude_spam: CommonProperties.excludeSpam
+    chains: {
+      type: "string",
+      description: "Comma-separated list of chains to include, or 'all' for all supported chains"
+    },
+    limit: CommonProperties.limit,
+    offset: CommonProperties.offset
   },
   ["address"]
 );
@@ -194,9 +199,7 @@ export const getSVMTransactionsTool: MCPTool = defineAPITool(
       try {
         const result = await getSVMTransactions(args.address, {
           limit: args.limit,
-          after_block_number: args.after_block_number,
-          after_timestamp: args.after_timestamp,
-          tx_hash: args.tx_hash
+          offset: args.offset
         });
         return handleToolResult(result);
       } catch (error: any) {
@@ -210,9 +213,7 @@ export const getSVMTransactionsTool: MCPTool = defineAPITool(
       description: "Solana wallet address to check transactions for"
     },
     limit: CommonProperties.limit,
-    after_block_number: CommonProperties.afterBlockNumber,
-    after_timestamp: CommonProperties.afterTimestamp,
-    tx_hash: CommonProperties.txHash
+    offset: CommonProperties.offset
   },
   ["address"]
 );

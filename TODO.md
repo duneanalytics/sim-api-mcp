@@ -31,6 +31,9 @@
 - [x] **Tests passing** - All 24 tests pass successfully
 - [x] **Server starts successfully** - MCP server runs on port 3000
 - [x] **Removed getEVMActivity** - Non-existent API endpoint removed from codebase
+- [x] **Reviewed tool alignment with sim.ts endpoints** - Verified all 7 endpoints have corresponding tools with proper implementation
+- [x] **Updated SVM balances tool** - Aligned with OpenAPI spec using `/beta/svm/balances/{uri}` endpoint and `chains`, `limit`, `offset` parameters
+- [x] **Updated SVM transactions tool** - Aligned with OpenAPI spec using `/beta/svm/transactions/{uri}` endpoint and `limit`, `offset` parameters only
 
 ## Tool-by-Tool Conversion - ✅ COMPLETED
 

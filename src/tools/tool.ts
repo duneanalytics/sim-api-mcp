@@ -173,5 +173,9 @@ export const CommonProperties = {
     type: "array",
     description: "List of Solana token mint addresses",
     items: { type: "string" }
+  },
+  offset: {
+    type: "string",
+    description: "Pagination offset from previous response"
   }
 } as const;
