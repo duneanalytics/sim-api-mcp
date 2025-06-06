@@ -34,6 +34,7 @@
 - [x] **Reviewed tool alignment with sim.ts endpoints** - Verified all 7 endpoints have corresponding tools with proper implementation
 - [x] **Updated SVM balances tool** - Aligned with OpenAPI spec using `/beta/svm/balances/{uri}` endpoint and `chains`, `limit`, `offset` parameters
 - [x] **Updated SVM transactions tool** - Aligned with OpenAPI spec using `/beta/svm/transactions/{uri}` endpoint and `limit`, `offset` parameters only
+- [x] **Cleaned up debugging logs** - Removed all debugging console.log statements from `sim.ts` while preserving operational logging
 
 ## Tool-by-Tool Conversion - ✅ COMPLETED
 

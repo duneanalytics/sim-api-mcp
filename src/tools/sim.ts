@@ -17,18 +17,19 @@ import {
 // Helper function to handle API responses and errors
 function handleToolResult(result: any) {
   if (result.error) {
-    return {
-      isError: true,
+    const errorResponse = {
       content: [
         {
           type: "text",
           text: `Error: ${result.error}`
         }
-      ]
+      ],
+      isError: true
     };
+    return errorResponse;
   }
 
-  return {
+  const successResponse = {
     content: [
       {
         type: "text",
@@ -36,6 +37,7 @@ function handleToolResult(result: any) {
       }
     ]
   };
+  return successResponse;
 }
 
 // EVM Tools

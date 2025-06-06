@@ -33,11 +33,16 @@ Add to your Claude Desktop MCP configuration:
 {
   "mcpServers": {
     "sim-api": {
-      "command": "sim-api-mcp",
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "http://localhost:3000/mcp"
+      ],
+      "timeout": 30000,
+      "reconnectDelay": 5000,
       "env": {
-        "SIM_API_KEY": "your_api_key_here"
+        "SIM_API_KEY": "YOUR_KEY"
       }
-    }
   }
 }
 ```

@@ -2,15 +2,25 @@ import { SIM_API_KEY } from "../../config/components/sim";
 
 export { SIM_API_KEY };
 
+// Helper function to validate API key
+function validateApiKey() {
+  if (!SIM_API_KEY || SIM_API_KEY.trim() === "") {
+    throw new Error("SIM_API_KEY is missing. Please set the SIM_API_KEY environment variable with your Sim API key.");
+  }
+}
+
 type EVMBalancesParams = {
   chain_ids?: string | string[]; 
   exclude_spam_tokens?: boolean; 
+  limit?: number; // maximum number of tokens to return
 };
 
 export async function getBalances(
   address: string,
   params: EVMBalancesParams = {}
 ) {
+  validateApiKey();
+  
   const url = new URL(
     `https://api.sim.dune.com/v1/evm/balances/${address}`
   );
@@ -26,6 +36,9 @@ export async function getBalances(
   if (params.exclude_spam_tokens !== undefined) {
     url.searchParams.append("exclude_spam_tokens", params.exclude_spam_tokens.toString());
   }
+
+  const limit = params.limit !== undefined ? params.limit : 20;
+  url.searchParams.append("limit", limit.toString());
 
   const response = await fetch(url.toString(), {
     headers: {
@@ -47,6 +60,8 @@ export async function getEVMTransactions(
   address: string,
   params: EVMTransactionsParams = {}
 ) {
+  validateApiKey();
+  
   const url = new URL(
     `https://api.sim.dune.com/v1/evm/transactions/${address}`
   );
@@ -97,6 +112,8 @@ export async function getTokenPrice(
   contract_address: string,
   params: EVMTokenParams = { chain_ids: "all" }
 ) {
+  validateApiKey();
+  
   const url = new URL(
     `https://api.sim.dune.com/v1/evm/token-info/${contract_address}`
   );
@@ -118,6 +135,8 @@ export async function getTokenPrice(
 }
 
 export async function listSupportedChainsTransactions() {
+  validateApiKey();
+  
   const response = await fetch(
     `https://api.sim.dune.com/v1/evm/transactions/chains`,
     {
@@ -126,10 +145,13 @@ export async function listSupportedChainsTransactions() {
       },
     }
   );
-  return await response.json();
+  const result = await response.json();
+  return result;
 }
 
 export async function listSupportedChainsTokenBalances() {
+  validateApiKey();
+  
   const response = await fetch(
     `https://api.sim.dune.com/v1/evm/balances/chains`,
     {
@@ -138,7 +160,8 @@ export async function listSupportedChainsTokenBalances() {
       },
     }
   );
-  return await response.json();
+  const result = await response.json();
+  return result;
 }
 
 // SVM Endpoints
@@ -153,6 +176,8 @@ export async function getSVMBalances(
   address: string,
   params: SVMBalancesParams = {}
 ) {
+  validateApiKey();
+  
   const url = new URL(
     `https://api.sim.dune.com/beta/svm/balances/${address}`
   );
@@ -186,6 +211,8 @@ export async function getSVMTransactions(
   address: string,
   params: SVMTransactionsParams = {}
 ) {
+  validateApiKey();
+  
   const url = new URL(
     `https://api.sim.dune.com/beta/svm/transactions/${address}`
   );
