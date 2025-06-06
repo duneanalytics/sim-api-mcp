@@ -117,60 +117,6 @@ export async function getTokenPrice(
   return await response.json();
 }
 
-type EVMActivityParams = {
-  chain_ids?: string | string[]; // specific chain IDs or "all"
-  limit?: number; // number of activities to return
-  after_block_number?: number; // fetch activities after this block
-  after_timestamp?: number; // fetch activities after this timestamp
-  tx_hash?: string; // filter by transaction hash
-};
-
-export async function getEVMActivity(
-  address: string,
-  params: EVMActivityParams = {}
-) {
-  const url = new URL(
-    `https://api.sim.dune.com/beta/activity/evm/${address}`
-  );
-
-  if (params.chain_ids) {
-    if (Array.isArray(params.chain_ids)) {
-      url.searchParams.append("chain_ids", params.chain_ids.join(","));
-    } else {
-      url.searchParams.append("chain_ids", params.chain_ids);
-    }
-  }
-
-  if (params.limit !== undefined) {
-    url.searchParams.append("limit", params.limit.toString());
-  }
-
-  if (params.after_block_number !== undefined) {
-    url.searchParams.append(
-      "after_block_number",
-      params.after_block_number.toString()
-    );
-  }
-
-  if (params.after_timestamp !== undefined) {
-    url.searchParams.append(
-      "after_timestamp",
-      params.after_timestamp.toString()
-    );
-  }
-
-  if (params.tx_hash) {
-    url.searchParams.append("tx_hash", params.tx_hash);
-  }
-
-  const response = await fetch(url.toString(), {
-    headers: {
-      "X-Sim-Api-Key": SIM_API_KEY,
-    },
-  });
-  return await response.json();
-}
-
 export async function listSupportedChainsTransactions() {
   const response = await fetch(
     `https://api.sim.dune.com/v1/evm/transactions/chains`,

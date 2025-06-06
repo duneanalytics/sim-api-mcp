@@ -10,10 +10,6 @@ export const TOOL_DESCRIPTIONS = {
       title: "Get EVM Transactions",
       description: "Retrieve transactions for a given wallet address across EVM chains. Returns comprehensive transaction data including block information, gas details, and transaction status."
     },
-    getEVMActivity: {
-      title: "Get EVM Activity",
-      description: "Retrieve high-level parsed activity for a wallet address. Returns structured summaries of actions (mint, receive, send) with token info, asset details, and human-readable timestamps."
-    },
     getTokenPrice: {
       title: "Get Token Price",
       description: "Get the current USD price for a specified token contract address. Supports filtering by chain IDs with default coverage across all supported chains."

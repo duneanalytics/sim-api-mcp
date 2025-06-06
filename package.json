@@ -2,7 +2,7 @@
   "name": "sim-api-mcp",
   "version": "1.0.0",
   "description": "mcp for sim apis",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "bin": {
     "sim-api-mcp": "src/index.ts"
   },
@@ -32,5 +32,11 @@
     "koa-router": "^13.0.1",
     "vitest": "^3.2.2",
     "zod": "^3.25.55"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

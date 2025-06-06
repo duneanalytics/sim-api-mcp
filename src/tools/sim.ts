@@ -7,7 +7,6 @@ import { TOOL_DESCRIPTIONS } from "./descriptions";
 import {
   getBalances,
   getEVMTransactions,
-  getEVMActivity,
   getTokenPrice,
   listSupportedChainsTransactions,
   listSupportedChainsTokenBalances,
@@ -73,37 +72,6 @@ export const getEVMTransactionsTool: MCPTool = defineAPITool(
     callback: async (args) => {
       try {
         const result = await getEVMTransactions(args.address, {
-          chain_ids: args.chain_ids,
-          limit: args.limit,
-          after_block_number: args.after_block_number,
-          after_timestamp: args.after_timestamp,
-          tx_hash: args.tx_hash
-        });
-        return handleToolResult(result);
-      } catch (error: any) {
-        return handleToolResult({ error: error.message });
-      }
-    }
-  },
-  {
-    address: CommonProperties.address,
-    chain_ids: CommonProperties.chainIdsString,
-    limit: CommonProperties.limit,
-    after_block_number: CommonProperties.afterBlockNumber,
-    after_timestamp: CommonProperties.afterTimestamp,
-    tx_hash: CommonProperties.txHash
-  },
-  ["address"]
-);
-
-export const getEVMActivityTool: MCPTool = defineAPITool(
-  {
-    name: "getEVMActivity",
-    description: TOOL_DESCRIPTIONS.evm.getEVMActivity.description,
-    title: TOOL_DESCRIPTIONS.evm.getEVMActivity.title,
-    callback: async (args) => {
-      try {
-        const result = await getEVMActivity(args.address, {
           chain_ids: args.chain_ids,
           limit: args.limit,
           after_block_number: args.after_block_number,
@@ -253,7 +221,6 @@ export const getSVMTransactionsTool: MCPTool = defineAPITool(
 export const simTools: MCPTool[] = [
   getBalancesTool,
   getEVMTransactionsTool,
-  getEVMActivityTool,
   getTokenPriceTool,
   listSupportedChainsTransactionsTool,
   listSupportedChainsTokenBalancesTool,

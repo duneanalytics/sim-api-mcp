@@ -2,6 +2,8 @@
 
 MCP (Model Context Protocol) server for Sim blockchain APIs, providing access to EVM and SVM transaction data, balances, and token information.
 
+**📦 This project uses pnpm as the package manager**
+
 ## Installation
 
 ### Global Installation (Recommended)
@@ -42,16 +44,16 @@ Add to your Claude Desktop MCP configuration:
 
 ## Available Tools
 
-- `getBalances` - Get EVM token balances for an address
-- `getEVMTransactions` - Get EVM transaction history
-- `getTokenPrice` - Get token price information  
-- `getEVMActivity` - Get EVM activity data
-- `getSVMBalances` - Get Solana token balances
-- `getSVMTransactions` - Get Solana transaction history
+### EVM Tools
+- `getBalances` - Get token balances for EVM wallet addresses
+- `getEVMTransactions` - Get transaction history for EVM addresses
+- `getTokenPrice` - Get current USD prices for EVM tokens
 - `listSupportedChainsTransactions` - List supported chains for transactions
 - `listSupportedChainsTokenBalances` - List supported chains for balances
 
 ## Development
+
+**Note: This project uses pnpm for package management**
 
 ```bash
 # Clone and install
