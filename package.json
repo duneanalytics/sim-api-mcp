@@ -1,0 +1,42 @@
+{
+  "name": "sim-api-mcp",
+  "version": "1.0.0",
+  "description": "mcp for sim apis",
+  "main": "src/index.ts",
+  "bin": {
+    "sim-api-mcp": "src/index.ts"
+  },
+  "preferGlobal": true,
+  "scripts": {
+    "start": "lsof -ti:3000 | xargs kill -9 2>/dev/null || true && npx tsx src/index.ts",
+    "dev": "lsof -ti:3000 | xargs kill -9 2>/dev/null || true && npx tsx watch src/index.ts",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duneanalytics/sim-api-mcp.git"
+  },
+  "author": "dot2dotseurat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/duneanalytics/sim-api-mcp/issues"
+  },
+  "homepage": "https://github.com/duneanalytics/sim-api-mcp#readme",
+  "dependencies": {
+    "@modelcontextprotocol/inspector": "^0.14.0",
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "koa": "^3.0.0",
+    "koa-bodyparser": "^4.4.1",
+    "koa-router": "^13.0.1",
+    "vitest": "^3.2.2",
+    "zod": "^3.25.55"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
