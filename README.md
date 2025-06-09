@@ -18,7 +18,7 @@ npx sim-api-mcp
 
 ## Setup
 
-1. Get your Sim API key from [Sim API Console](https://console.sim.dune.com)
+1. Get your Sim API key from [Sim API Console](sim.dune.com)
 
 2. Set environment variable:
 ```bash
