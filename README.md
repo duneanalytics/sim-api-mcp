@@ -56,6 +56,10 @@ Add to your Claude Desktop MCP configuration:
 - `listSupportedChainsTransactions` - List supported chains for transactions
 - `listSupportedChainsTokenBalances` - List supported chains for balances
 
+### SVM Tools
+- `getSVMBalances` - Get token balances for Solana wallet addresses
+- `getSVMTransactions` - Get transaction history for Solana addresses
+
 ## Development
 
 **Note: This project uses pnpm for package management**
