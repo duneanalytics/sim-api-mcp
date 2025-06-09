@@ -4,7 +4,7 @@ import Koa from "koa";
 import Router from "koa-router";
 import bodyParser from "koa-bodyparser";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
-import { localMcpServer } from "./server.js";
+import { localMcpServer } from "./server";
 import { randomUUID } from "crypto";
 
 // Store for active transports
