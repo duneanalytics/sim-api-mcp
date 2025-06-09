@@ -6,28 +6,35 @@ MCP (Model Context Protocol) server for Sim blockchain APIs, providing access to
 
 ## Installation
 
-### Global Installation (Recommended)
 ```bash
-npm install -g sim-api-mcp
-```
-
-### Or use with npx (no installation)
-```bash
-npx sim-api-mcp
+# Clone and install
+git clone https://github.com/duneanalytics/sim-api-mcp.git
+cd sim-api-mcp
+pnpm install
 ```
 
 ## Setup
 
-1. Get your Sim API key from [Sim API Console](sim.dune.com)
+1. Get your Sim API key from [Sim API Console](https://sim.dune.com)
 
 2. Set environment variable:
 ```bash
 export SIM_API_KEY=your_api_key_here
 ```
 
+3. Start the server:
+```bash
+pnpm run start
+```
+
 ## Usage with Claude Desktop
 
-Add to your Claude Desktop MCP configuration:
+First, start the server locally:
+```bash
+pnpm run start
+```
+
+Then add to your Claude Desktop MCP configuration:
 
 ```json
 {
@@ -43,6 +50,7 @@ Add to your Claude Desktop MCP configuration:
       "env": {
         "SIM_API_KEY": "YOUR_KEY"
       }
+    }
   }
 }
 ```
