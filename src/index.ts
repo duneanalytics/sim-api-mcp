@@ -66,9 +66,6 @@ const handleMcpRequest = async (ctx: Koa.Context) => {
 // Handle all MCP traffic (GET, POST, DELETE)
 router.all("/", handleMcpRequest);
 
-// Add SSE endpoint for compatibility
-router.all("/sse", handleMcpRequest);
-
 app.use(router.routes());
 app.use(router.allowedMethods());
 
